@@ -7,7 +7,7 @@ import torchvision.datasets as datasets
 import torchvision.transforms as transforms
 
 # loading pretrained model
-checkpoint = torch.load(r'../MNIST/models/Autoencoder_1_layers.pth')
+checkpoint = torch.load(r'../MNIST/models/Autoencoder_5_layers.pth')
 model = Autoencoder(checkpoint["dimensions"])
 model.load_state_dict(checkpoint['state_dict'])
 encoder = model.encoder
@@ -27,10 +27,10 @@ latent_vector_3 = encoder.forward(random_samples[2])
 out_1 = decoder.forward(latent_vector_1)
 out_2 = decoder.forward(latent_vector_2)
 out_3 = decoder.forward(latent_vector_3)
-# plot_example(out_1, out_2)
+plot_example(out_1, out_2)
 
 # plot the path from the first and second vector in the latent space
-def move_from_a_to_b(a, b, steps=120):
+def move_from_a_to_b(a, b, steps=50, save=r"data/Animation"):
     """given two vector in the latent space
     render the steps from vector a to b in the latent space
     """
@@ -41,6 +41,8 @@ def move_from_a_to_b(a, b, steps=120):
         out = decoder.forward(a)
         img = img_from_tensor(out)
         plt.imshow(img, cmap='gray')
+        if save:
+            plt.savefig(save + "/" + 'step' + str(i) + '.png')
         plt.show()
 move_from_a_to_b(latent_vector_1, latent_vector_2)
-move_from_a_to_b(latent_vector_2, latent_vector_3)
+# move_from_a_to_b(latent_vector_2, latent_vector_3)
