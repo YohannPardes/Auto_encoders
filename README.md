@@ -13,5 +13,7 @@ Currently, the repository includes:
 
 ## 🖼️ Latent Space Traversal
 
-The interpolation process takes two embeddings `A` and `B` and generates intermediate latent vectors using:
+The interpolation process takes two embeddings `A` and `B` and generates intermediate latent vectors.
 
+Here from 4 -> 6 -> 4 etc..
+<img src="Global/data/Animation/GIF_example.gif" alt="alt text">
